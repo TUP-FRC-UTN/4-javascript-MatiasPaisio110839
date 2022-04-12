@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+  <title>Clase 4 - Javascript</title>
+</head>
+
+<body>
+  <div class="container-fluid bg-primary py-3">
+    <h1 class="display-4 text-white text-left font-weight-bolder text">Registro de persona</h1>
+  </div>
+
+  <form class="container-fluid">
+    <div class="row">
+      <div class="col-2 text-left">
+        Nombre:
+        <input type="text" name="nombre" id="txtNombre"><br>
+      </div>
+      <div class="col-2 text-left">
+        Apellido:
+        <input type="text" name="Apellido" id="txtApellido"><br>
+        <br>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        Sexo:
+      </div>
+      <div class="row">
+        <div class="col-1 text-left">
+          <input type="radio" name="Sexo" value="masculino">Masculino 
+        </div>
+        <div class="col-1 text-left">
+          <input type="radio" name="Sexo" value="femenino">Femenino 
+        </div>
+        <div class="col-1 text-left">
+          <input type="radio" name="Sexo" value="otro">Otro
+        </div>
+        <br>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <br>
+      <div class="row">
+        Deporte:
+        <div class="col-1">
+          <select name="deporte">
+            <option value="tenis">Tenis</option>
+            <option value="futbol">Futbol</option>
+            <option value="rugby">Rugby</option>
+            <option value="padel">Padel</option>
+          </select>
+          <br>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <br>
+      Descripcion de usuario:<br>
+      <textarea name="descripcion" rows="10" cols="60" id="txtDescripcion"></textarea>
+      <br>
+    </div>
+  </form>
+  <div class="container-fluid">
+    <br>
+    <button type="button" onclick="validarForm();">Validar</button>
+    <button type=" button" onclick="GuardarDatos();">Guardar Datos</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
+    </script>
+
+  <script>
+    function validarForm() {
+      var txtNombre = document.getElementById('txtNombre');
+      var txtApellido = document.getElementById('txtApellido');
+      var txtDescripcion = document.getElementById('txtDescripcion');
+      var radioButtonGenero = document.getElementsByName('genero')
+      //console.log(txtNombre);
+
+      if (txtNombre.value === '') {
+        alert('El campo nombre  es requerido!');
+        return false
+      }
+
+      if (txtApellido.value === '') {
+        alert('El campo apellido es requerido!');
+        return false
+      }
+
+      if (txtDescripcion.value === '') {
+        alert('El campo descripcion es requerido!');
+        return false
+      }
+      else if (txtDescripcion.value.leght <= 100) {
+        alert('el campo descripcion tiene in limite de 100 caracteres')
+        return false
+      }
+
+      var seleccionado = false;
+      for (var i = 0; i < radioButtonGenero.length; i++) {
+        if (radioButtonGenero[i].checked) {
+          var seleccionado = true;
+          break;
+        }
+      }
+
+      if (seleccionado == false) {
+        alert('al menos algun elemento de genero debe ser seleccionado');
+      }
+
+      return true;
+    }
+
+    function GuardarDatos() {
+      if (validarForm() == true) {
+        alert('Guardando datos...')
+      }
+      else {
+        alert('Error en la validacion')
+      }
+    }
+
+  </script>
+</body>
+
+</html>
